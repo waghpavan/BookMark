@@ -12,7 +12,7 @@ export async function handler(request: Request, { params }: { params: { path: st
   }
 
   // Build full target URL:  <BACKEND_URL>/<path>?<query>
-  const targetUrl = `${backend}/${params.path.join("/")}${request.url.split("?")[1] ? "?" + request.url.split("?")[1] : ""}`
+  const targetUrl = backend;
 
   // Forward the request (method, headers, body)
   const forwardRes = await fetch(targetUrl, {

@@ -6,6 +6,7 @@
  */
 export async function handler(request: Request, { params }: { params: { path: string[] } }) {
   const backend = process.env.BACKEND_URL?.replace(/\/+$/, "")
+  console.log(backend);
   if (!backend) {
     return new Response("BACKEND_URL env var not set", { status: 500 })
   }

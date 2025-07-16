@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { useBookmarks } from "../context/bookmark-context"
 import { Bookmark, Folder, Plus, Hash, Home, Sparkles, TrendingUp } from "lucide-react"
 
-const Sidebar = forwardRef<HTMLDivElement>(({ onAddFolder }, ref) => {
+const Sidebar = React.forwardRef(({ onAddFolder }, ref) => {
   const { folders, bookmarks, selectedFolder, selectedTag, filterByFolder, filterByTag, clearFilters } = useBookmarks()
 
   const allTags = [...new Set(bookmarks.flatMap((bookmark) => bookmark.tags || []))]

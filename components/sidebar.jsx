@@ -1,17 +1,18 @@
 "use client"
 
+import React, { forwardRef } from "react";
 import { Button } from "@/components/ui/button"
 import { useBookmarks } from "../context/bookmark-context"
 import { Bookmark, Folder, Plus, Hash, Home, Sparkles, TrendingUp } from "lucide-react"
 
-export default function Sidebar({ onAddFolder }) {
+const Sidebar = forwardRef<HTMLDivElement>(({ onAddFolder }, ref) => {
   const { folders, bookmarks, selectedFolder, selectedTag, filterByFolder, filterByTag, clearFilters } = useBookmarks()
 
   const allTags = [...new Set(bookmarks.flatMap((bookmark) => bookmark.tags || []))]
   const recentBookmarks = bookmarks.slice(0, 5)
 
   return (
-    <div className="h-full flex flex-col bg-white/95 backdrop-blur-sm">
+    <div ref={ref} className="h-full flex flex-col bg-white/95 backdrop-blur-sm">
       {/* Header */}
       <div className="p-6 border-b border-slate-200/50">
         <div className="flex items-center space-x-3">
@@ -149,4 +150,6 @@ export default function Sidebar({ onAddFolder }) {
       </div>
     </div>
   )
-}
+})
+
+export default Sidebar

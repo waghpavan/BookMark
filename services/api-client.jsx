@@ -3,8 +3,9 @@
 import { toast } from "@/hooks/use-toast"
 
 function buildUrl(endpoint) {
+  console.log("API endpoint:", endpoint);
   const ep = endpoint.replace(/^\/+/, "") // strip leading /
-  return `/api/bff/${ep}` // ← hit the proxy, not the real origin
+  return `${process.env.NEXT_PUBLIC_API_URL}/bff/${ep}` // ← hit the proxy, not the real origin
 }
 
 async function safeReadJson(res) {
@@ -29,7 +30,7 @@ class ApiClient {
 
   async request(endpoint, { method = "GET", body, headers = {}, ...rest } = {}) {
     const url = buildUrl(endpoint)
-
+    console.log("Making API request to:", url);
     try {
       const res = await fetch(url, {
         method,

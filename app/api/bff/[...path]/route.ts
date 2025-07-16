@@ -5,10 +5,11 @@
  * Docs: https://nextjs.org/docs/app/guides/backend-for-frontend                [^1]
  */
 export async function handler(request: Request, { params }: { params: { path: string[] } }) {
-  const backend = process.env.BACKEND_URL?.replace(/\/+$/, "")
+  // Access environment variable (ensure NEXT_PUBLIC_API_URL is defined in .env file)
+  const backend = process.env.NEXT_PUBLIC_API_URL?.replace(/\/+$/, "");
   console.log(backend);
   if (!backend) {
-    return new Response("BACKEND_URL env var not set", { status: 500 })
+    return new Response("NEXT_PUBLIC_API_URL env var not set", { status: 502 });
   }
 
   // Build full target URL:  <BACKEND_URL>/<path>?<query>

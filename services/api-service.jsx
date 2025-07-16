@@ -1,6 +1,6 @@
 class ApiService {
   constructor() {
-    this.baseUrl = "/api"
+    this.baseUrl = process.env.NEXT_PUBLIC_API_URL || "/api"
     this.token = null
   }
 
@@ -10,6 +10,7 @@ class ApiService {
 
   async request(endpoint, options = {}) {
     const url = `${this.baseUrl}${endpoint}`
+    console.log("Making API request to:", url)
     const config = {
       headers: {
         "Content-Type": "application/json",
